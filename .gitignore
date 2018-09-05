@@ -172,7 +172,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .classpath
-.gitignore
 .idea/
 .project
 *.iml
