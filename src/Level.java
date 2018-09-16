@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class Level {
 
-    private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-    private ArrayList<Rideable> rideables = new ArrayList<Rideable>();
-    private ArrayList<Tile> tiles = new ArrayList<Tile>();
+    private ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private ArrayList<Rideable> rideables = new ArrayList<>();
+    private ArrayList<Tile> tiles = new ArrayList<>();
 
 
     public Level(String csvSource) throws FileNotFoundException, SlickException {

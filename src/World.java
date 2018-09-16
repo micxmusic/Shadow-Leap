@@ -8,7 +8,8 @@ public class World {
 
     private Player frog;
     private Level level;
-    private int numLevel = 1;
+    private int numLevel = 0;
+    private boolean[] validMove = {true, true, true, true};
     private Image lives = new Image("assets/lives.png");
 
 	public World() throws SlickException {
@@ -27,9 +28,14 @@ public class World {
 	    // Update all of the sprites in the game
 		for(Vehicle vehicle: level.getVehicles()){
 		    vehicle.update(delta);
+
+            if(frog.willCrash(vehicle)!=-1 && vehicle instanceof Bulldozer){
+                validMove[frog.willCrash(vehicle)] = false;
+            }
+
 		    if(frog.contactSprite(vehicle)){
                 if(vehicle instanceof Bulldozer){
-
+                    ((Bulldozer) vehicle).pushPlayer(frog, delta);
                 } else {
                     frog.decreaseLife();
                 }
@@ -51,10 +57,16 @@ public class World {
 		        frog.decreaseLife();
 		        break;
             }
+            if(frog.willCrash(tile) != -1 && tile.isSolid){
+		        validMove[frog.willCrash(tile)] = false;
+            }
         }
 
-        frog.update(input);
+        frog.update(input, validMove);
 
+		for(int i = 0; i < 4; i++){
+		    validMove[i] = true;
+        }
 	}
 	
 	public void render(Graphics g) {
