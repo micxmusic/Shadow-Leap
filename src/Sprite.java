@@ -18,6 +18,20 @@ public abstract class Sprite {
         box = new BoundingBox(sprite, xPos, yPos);
     }
 
+    public void appear(){
+        if(sprite.getAlpha() < 1f){
+            sprite.setAlpha(sprite.getAlpha() + 0.1f);
+        }
+        setBox(new BoundingBox(sprite, xPos, yPos));
+    }
+
+    public void disappear(){
+        if(sprite.getAlpha() > 0f){
+            sprite.setAlpha(sprite.getAlpha() - 0.1f);
+        }
+        setBox(null);
+    }
+
     public void render() {
         sprite.drawCentered(xPos, yPos);
     }

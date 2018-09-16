@@ -1,23 +1,9 @@
 import org.newdawn.slick.SlickException;
 
-public class Bus extends Sprite{
+public class Bus extends Vehicle{
 
-    private final static float SPEED = 0.15f;
-
-    public Bus(float x, float y) throws SlickException {
-        super("assets/bus.png", x, y);
-    }
-
-    public void update(int direction, int delta) {
-        setxPos(getxPos() + direction * SPEED * delta);
-        if (getxPos() < 0 - getSprite().getWidth()) {
-            setxPos(App.SCREEN_WIDTH);
-        }
-        if(getxPos() > App.SCREEN_WIDTH) {
-            setxPos(0 - getSprite().getWidth());
-        }
-        getBox().setX(getxPos());
-
+    public Bus(float x, float y, boolean direction) throws SlickException {
+        super("assets/bus.png", x, y, 0.15f, direction);
     }
 
 }
