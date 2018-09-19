@@ -14,7 +14,7 @@ public class Player extends Sprite{
     }
 
     public void update(Input input, boolean[] validMove) {
-        
+
         if(input.isKeyPressed(Input.KEY_DOWN)){
             if(getyPos() + TILE_SIZE <= App.SCREEN_HEIGHT - TILE_SIZE/2 && validMove[3]) {
                 setyPos(getyPos() + TILE_SIZE);
@@ -54,12 +54,24 @@ public class Player extends Sprite{
 
     public void decreaseLife(){
         if(this.lives > 0) {
+            resetPosition();
             this.lives -= 1;
-            this.setxPos(512);
-            this.setyPos(720);
         } else {
             System.exit(0);
         }
+    }
+
+    public boolean addExtraLife(Extralife extralife){
+        if(contactSprite(extralife)){
+            increaseLife();
+            return true;
+        }
+        return false;
+    }
+
+    public void resetPosition(){
+        this.setxPos(World.PLAYER_INITIAL_X);
+        this.setyPos(World.PLAYER_INITIAL_Y);
     }
 
     public int willCrash(Sprite other){
@@ -79,7 +91,7 @@ public class Player extends Sprite{
         return lives;
     }
 
-    public boolean getRiding() {
+    public boolean isRiding() {
         return isRiding;
     }
 

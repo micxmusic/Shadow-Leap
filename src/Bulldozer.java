@@ -8,8 +8,8 @@ public class Bulldozer extends Vehicle {
 
     public void pushPlayer(Player player, int delta){
         player.setxPos(player.getxPos() + getSign() * getSpeed() * delta);
-        if(player.getxPos() - player.getSprite().getWidth()/2 > App.SCREEN_WIDTH ||
-                player.getxPos() + player.getSprite().getWidth()/2 < 0){
+        if(player.getxPos() + player.getSprite().getWidth()/2 > App.SCREEN_WIDTH ||
+                player.getxPos() - player.getSprite().getWidth()/2 < 0){
             player.decreaseLife();
         }
     }

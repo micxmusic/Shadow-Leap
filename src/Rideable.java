@@ -13,4 +13,8 @@ public class Rideable extends Obstacle{
         }
     }
 
+    public void moveSprite(Sprite sprite, int delta){
+        sprite.setxPos(this.getxPos() + getSign() * getSpeed() * delta);
+    }
+
 }

@@ -8,8 +8,10 @@ import java.util.Scanner;
 public class Level {
 
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private ArrayList<Rideable> logs = new ArrayList<>();
     private ArrayList<Rideable> rideables = new ArrayList<>();
     private ArrayList<Tile> tiles = new ArrayList<>();
+    private ArrayList<Tile> goals = new ArrayList<>();
 
 
     public Level(String csvSource) throws FileNotFoundException, SlickException {
@@ -34,10 +36,14 @@ public class Level {
                         vehicles.add(new Bulldozer(xPos, yPos, direction));
                         break;
                     case "log":
-                        rideables.add(new Log(xPos, yPos, direction));
+                        Rideable newLog = new Log(xPos, yPos, direction);
+                        logs.add(newLog);
+                        rideables.add(newLog);
                         break;
                     case "longLog":
-                        rideables.add(new Longlog(xPos, yPos, direction));
+                        Rideable newLongLog = new Longlog(xPos, yPos, direction);
+                        logs.add(newLongLog);
+                        rideables.add(newLongLog);
                         break;
                     case "turtle":
                         rideables.add(new Turtles(xPos, yPos, direction));
@@ -68,15 +74,25 @@ public class Level {
 
     }
 
+    public boolean Completed(){
+        return (goals.size() == 5);
+    }
+
     public ArrayList<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public ArrayList<Rideable> getRideables() {
-        return rideables;
+    public ArrayList<Rideable> getLogs() {
+        return logs;
     }
+
+    public ArrayList<Rideable> getRideables() {return rideables; }
 
     public ArrayList<Tile> getTiles() {
         return tiles;
+    }
+
+    public ArrayList<Tile> getGoals() {
+        return goals;
     }
 }
