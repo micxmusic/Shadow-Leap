@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Level {
 
+    private int previousTreeXPos = -1;
+    private int goalsFilled;
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
     private ArrayList<Rideable> logs = new ArrayList<>();
     private ArrayList<Rideable> rideables = new ArrayList<>();
@@ -16,6 +18,7 @@ public class Level {
 
     public Level(String csvSource) throws FileNotFoundException, SlickException {
         Scanner scanner = new Scanner(new FileReader(csvSource));
+        goalsFilled = 0;
         while(scanner.hasNext()) {
             String elements[] = scanner.nextLine().split(",");
             int xPos = Integer.parseInt(elements[1]);
@@ -62,20 +65,33 @@ public class Level {
                         break;
                     case "tree":
                         tiles.add(new Tile("assets/tree.png", xPos, yPos, false, true));
+                        if(previousTreeXPos == -1){
+                            previousTreeXPos = xPos;
+                        } else {
+                            if(xPos - previousTreeXPos > Sprite.TILE_SIZE){
+                                Tile goal = new Tile("assets/frog.png",
+                                        (xPos + previousTreeXPos)/2, yPos, false, false);
+                                goal.getSprite().setAlpha(0);
+                                goals.add(goal);
+                            }
+                            previousTreeXPos = xPos;
+                        }
                         break;
                     default:
                         System.exit(1);
 
                 }
             }
-
-
         }
 
     }
 
     public boolean Completed(){
-        return (goals.size() == 5);
+        return (goalsFilled == goals.size());
+    }
+
+    public void increaseGoalsFilled(){
+        goalsFilled += 1;
     }
 
     public ArrayList<Vehicle> getVehicles() {

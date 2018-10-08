@@ -1,6 +1,6 @@
 import org.newdawn.slick.SlickException;
 
-public class Obstacle extends Sprite {
+public abstract class Obstacle extends Sprite {
 
     private final float speed;
     private boolean direction;
@@ -12,7 +12,7 @@ public class Obstacle extends Sprite {
         this.direction = direction;
     }
 
-    public void update(int delta){
+    public void update(int delta) throws SlickException{
         sign = getDirection()? 1 : -1;
         setxPos(getxPos() + sign * getSpeed() * delta);
         if (getxPos() < 0 - getSprite().getWidth()/2) {

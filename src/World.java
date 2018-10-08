@@ -2,32 +2,29 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.particles.effects.FireEmitter;
 
 import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class World {
 
-    public final static int PLAYER_INITIAL_X = 512;
-    public final static int PLAYER_INITIAL_Y = 720;
-    public final int GOAL = 48;
+    public static final int CONVERSION_UNIT = 1000;
 
     private Player frog;
     private Level level;
     private int numLevel = 0;
-    private int timer = 0;
     private int delayTimer = 0;
-    private Extralife extralife;
-    private Rideable log;
+    private ExtraLife extralife;
     private boolean[] validMove = {true, true, true, true};
-    private boolean extraLifeActive = false;
     private int spawnTime = selectRandom(25, 35);
 
     private Image lives = new Image("assets/lives.png");
 
     public World() throws SlickException {
         // Perform initialisation logic
-        frog = new Player("assets/frog.png", PLAYER_INITIAL_X, PLAYER_INITIAL_Y);
+        frog = new Player();
+        extralife = new ExtraLife(spawnTime);
         try {
             level = new Level("assets/levels/" + numLevel + ".lvl");
         } catch (FileNotFoundException e) {
@@ -87,50 +84,32 @@ public class World {
             validMove[i] = true;
         }
 
-        if (frog.getyPos() == GOAL) {
-            boolean reachedGoal = true;
-            for (Tile completed : level.getGoals()) {
-                if (frog.contactSprite(completed) || frog.willCrash(completed) != -1) {
+        //Goals update
+        for (Tile completed : level.getGoals()) {
+            if (frog.contactSprite(completed)) {
+                if(completed.isDangerous) {
                     frog.decreaseLife();
-                    reachedGoal = false;
                     break;
+                } else {
+                    completed.getSprite().setAlpha(1);
+                    completed.setDangerous(true);
+                    level.increaseGoalsFilled();
+                    frog.resetPosition();
                 }
-            }
-
-            if (reachedGoal) {
-                level.getGoals().add(new Tile("assets/frog.png", frog.getxPos(), frog.getyPos(), true, false));
-                frog.resetPosition();
             }
         }
 
         //Extra life update
-        if (extraLifeActive) {
-            if (timer > 14000 || frog.addExtraLife(extralife)) {
-                extralife.disappear();
-                extraLifeActive = false;
-                timer = 0;
-            }
-        } else if (timer > spawnTime * 1000 && !extraLifeActive) {
-            int logNumber = selectRandom(0, level.getLogs().size() - 1);
-            log = level.getLogs().get(logNumber);
-            extralife = new Extralife(log.getxPos(), log.getyPos());
-            log.moveSprite(extralife, delta);
-            extraLifeActive = true;
-            timer = 0;
-        } else {
-            timer += delta;
-        }
-
-        //Update extra life
-        if (extraLifeActive) {
-            extralife.update(log, delta);
-        }
+        extralife.update(level.getLogs(), delta, frog);
 
         //Check for level completion
         if (level.Completed()) {
             if (delayTimer > 1000) {
                 numLevel += 1;
                 delayTimer = 0;
+                if(extralife.isActive()){
+                    extralife.deactivate();
+                }
                 try {
                     level = new Level("assets/levels/" + numLevel + ".lvl");
                 } catch (FileNotFoundException e) {
@@ -164,18 +143,18 @@ public class World {
             renderLives(24 + i * 32);
         }
 
-        if (extraLifeActive) {
+        if (extralife.isActive()) {
             extralife.render();
         }
         frog.render();
     }
 
-    public void renderLives(float xPos) {
+    private void renderLives(float xPos) {
         float yPos = 744;
         lives.drawCentered(xPos, yPos);
     }
 
-    public int selectRandom(int min, int max) {
+    public static int selectRandom(int min, int max) {
         Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
     }

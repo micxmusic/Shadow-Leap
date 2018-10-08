@@ -1,18 +1,38 @@
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
 
+/**
+ * The type Player.
+ */
 public class Player extends Sprite{
+
+    private final static int PLAYER_INITIAL_X = 512;
+    private final static int PLAYER_INITIAL_Y = 720;
 
     private int lives = 3;
     private boolean isRiding = false;
     private BoundingBox[] movableDirections = new BoundingBox[4];
+    private Image alternate1 = new Image("assets/jesterfrog.png");
+    private Image temp = getSprite();
 
-    public Player(String imageSrc, float x, float y) throws SlickException {
-        super(imageSrc, x, y);
+    /**
+     * Instantiates a new Player.
+     *
+     * @throws SlickException the slick exception
+     */
+    public Player() throws SlickException {
+        super("assets/frog.png", PLAYER_INITIAL_X, PLAYER_INITIAL_Y);
     }
 
+    /**
+     * Update.
+     *
+     * @param input     the input
+     * @param validMove the valid move
+     */
     public void update(Input input, boolean[] validMove) {
 
         if(input.isKeyPressed(Input.KEY_DOWN)){
@@ -39,19 +59,38 @@ public class Player extends Sprite{
             }
         }
 
+        if(input.isKeyDown(Input.KEY_D)){
+            setSprite(alternate1);
+        }
+
+        if(input.isKeyDown(Input.KEY_A)){
+            setSprite(temp);
+        }
+
         setRiding(false);
-        getBox().setX(getxPos());
-        getBox().setY(getyPos());
+        updateBox();
     }
 
+    /**
+     * Contact sprite boolean.
+     *
+     * @param other the other
+     * @return the boolean
+     */
     public boolean contactSprite(Sprite other) {
         return(getBox().intersects(other.getBox()));
     }
 
+    /**
+     * Increase life.
+     */
     public void increaseLife(){
         this.lives += 1;
     }
 
+    /**
+     * Decrease life.
+     */
     public void decreaseLife(){
         if(this.lives > 0) {
             resetPosition();
@@ -61,7 +100,13 @@ public class Player extends Sprite{
         }
     }
 
-    public boolean addExtraLife(Extralife extralife){
+    /**
+     * Add extra life boolean.
+     *
+     * @param extralife the extralife
+     * @return the boolean
+     */
+    public boolean addExtraLife(ExtraLife extralife){
         if(contactSprite(extralife)){
             increaseLife();
             return true;
@@ -69,11 +114,29 @@ public class Player extends Sprite{
         return false;
     }
 
+    /**
+     * Reset position.
+     */
     public void resetPosition(){
-        this.setxPos(World.PLAYER_INITIAL_X);
-        this.setyPos(World.PLAYER_INITIAL_Y);
+        this.setxPos(PLAYER_INITIAL_X);
+        this.setyPos(PLAYER_INITIAL_Y);
+        updateBox();
     }
 
+    /**
+     * Update box.
+     */
+    public void updateBox(){
+        getBox().setX(getxPos());
+        getBox().setY(getyPos());
+    }
+
+    /**
+     * Will crash int.
+     *
+     * @param other the other
+     * @return the int
+     */
     public int willCrash(Sprite other){
         movableDirections[0] = new BoundingBox(getxPos() - TILE_SIZE, getyPos(), TILE_SIZE, TILE_SIZE);
         movableDirections[1] = new BoundingBox(getxPos() + TILE_SIZE, getyPos(), TILE_SIZE, TILE_SIZE);
@@ -87,14 +150,29 @@ public class Player extends Sprite{
         return -1;
     }
 
+    /**
+     * Gets lives.
+     *
+     * @return the lives
+     */
     public int getLives() {
         return lives;
     }
 
+    /**
+     * Is riding boolean.
+     *
+     * @return boolean indicator of whether Player is riding a log
+     */
     public boolean isRiding() {
         return isRiding;
     }
 
+    /**
+     * Sets riding.
+     *
+     * @param ride the ride
+     */
     public void setRiding(Boolean ride) {
         this.isRiding = ride;
     }

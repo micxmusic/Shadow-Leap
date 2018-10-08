@@ -11,4 +11,7 @@ public class Tile extends Sprite{
         this.isSolid = isSolid;
     }
 
+    public void setDangerous(boolean dangerous) {
+        isDangerous = dangerous;
+    }
 }

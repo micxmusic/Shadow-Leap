@@ -14,7 +14,7 @@ public class Bike extends Vehicle{
         }
     }
 
-    public void update(int delta) {
+    public void update(int delta) throws SlickException{
         super.update(delta);
         if (getxPos() - 24 < EPSILON) {
             setDirection(true);
