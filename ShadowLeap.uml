@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="227.0564236111111" y="2194.0">App</node>
+    <node x="575.6093749999999" y="1263.5">Rideable</node>
+    <node x="1245.75" y="930.0">Obstacle</node>
+    <node x="1465.0" y="1561.5">Bulldozer</node>
+    <node x="261.55642361111114" y="1806.0">World</node>
+    <node x="1411.4147569444444" y="1285.5">Vehicle</node>
+    <node x="182.0" y="1418.0">ExtraLife</node>
+    <node x="1694.0" y="1528.0">Bike</node>
+    <node x="1148.0" y="1495.0">Bus</node>
+    <node x="0.0" y="864.0">Player</node>
+    <node x="1357.0" y="1572.5">Racecar</node>
+    <node x="623.9253472222221" y="432.0">Sprite</node>
+    <node x="496.11284722222206" y="0.0">utilities.BoundingBox</node>
+    <node x="616.0" y="1572.5">Log</node>
+    <node x="989.625" y="1252.0">Tile</node>
+    <node x="504.0" y="1572.5">Longlog</node>
+    <node x="704.0" y="1550.0">Turtles</node>
+    <node x="876.0" y="1418.0">Level</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Obstacle" target="Sprite">
+      <point x="0.0" y="-103.0" />
+      <point x="1349.25" y="834.0" />
+      <point x="805.0503472222221" y="834.0" />
+      <point x="77.625" y="191.0" />
+    </edge>
+    <edge source="ExtraLife" target="Rideable">
+      <point x="75.5" y="-169.0" />
+      <point x="408.5" y="1388.0" />
+      <point x="596.9093749999998" y="1388.0" />
+      <point x="-85.20000000000005" y="36.5" />
+    </edge>
+    <edge source="Bike" target="Vehicle">
+      <point x="0.0" y="-59.0" />
+      <point x="1770.0" y="1388.0" />
+      <point x="1487.0147569444443" y="1388.0" />
+      <point x="33.60000000000002" y="14.5" />
+    </edge>
+    <edge source="Tile" target="Sprite">
+      <point x="0.0" y="-48.0" />
+      <point x="1098.625" y="1222.0" />
+      <point x="1058.2196180555554" y="1222.0" />
+      <point x="1058.2196180555554" y="844.0" />
+      <point x="753.3003472222221" y="844.0" />
+      <point x="25.875" y="191.0" />
+    </edge>
+    <edge source="World" target="Player">
+      <point x="-66.33333333333326" y="-169.0" />
+      <point x="294.7230902777779" y="1781.0" />
+      <point x="123.5" y="1781.0" />
+      <point x="0.0" y="169.0" />
+    </edge>
+    <edge source="World" target="ExtraLife">
+      <point x="0.0" y="-169.0" />
+      <point x="361.05642361111114" y="1781.0" />
+      <point x="333.0" y="1781.0" />
+      <point x="0.0" y="169.0" />
+    </edge>
+    <edge source="Level" target="Rideable">
+      <point x="-84.0" y="-169.0" />
+      <point x="918.0" y="1388.0" />
+      <point x="767.3093749999999" y="1388.0" />
+      <point x="85.20000000000005" y="36.5" />
+    </edge>
+    <edge source="Bulldozer" target="Vehicle">
+      <point x="0.0" y="-25.5" />
+      <point x="1569.5" y="1398.0" />
+      <point x="1470.2147569444444" y="1398.0" />
+      <point x="16.799999999999955" y="14.5" />
+    </edge>
+    <edge source="Bus" target="Tile">
+      <point x="-47.25" y="-92.0" />
+      <point x="1195.25" y="1368.0" />
+      <point x="1153.125" y="1368.0" />
+      <point x="54.5" y="48.0" />
+    </edge>
+    <edge source="Player" target="Sprite">
+      <point x="61.75" y="-169.0" />
+      <point x="185.25" y="834.0" />
+      <point x="649.8003472222221" y="834.0" />
+      <point x="-77.625" y="191.0" />
+    </edge>
+    <edge source="App" target="World">
+      <point x="0.0" y="-92.0" />
+      <point x="0.0" y="169.0" />
+    </edge>
+    <edge source="Racecar" target="Vehicle">
+      <point x="0.0" y="-14.5" />
+      <point x="1401.0" y="1398.0" />
+      <point x="1453.4147569444444" y="1398.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ExtraLife" target="Sprite">
+      <point x="-75.5" y="-169.0" />
+      <point x="257.5" y="844.0" />
+      <point x="701.5503472222221" y="844.0" />
+      <point x="-25.875" y="191.0" />
+    </edge>
+    <edge source="Player" target="utilities.BoundingBox">
+      <point x="-61.75" y="-169.0" />
+      <point x="61.75" y="407.0" />
+      <point x="556.3628472222221" y="407.0" />
+      <point x="-60.25" y="191.0" />
+    </edge>
+    <edge source="Turtles" target="Rideable">
+      <point x="0.0" y="-37.0" />
+      <point x="780.0" y="1398.0" />
+      <point x="724.7093749999998" y="1398.0" />
+      <point x="42.59999999999991" y="36.5" />
+    </edge>
+    <edge source="Level" target="Tile">
+      <point x="0.0" y="-169.0" />
+      <point x="1002.0" y="1398.0" />
+      <point x="1044.125" y="1398.0" />
+      <point x="-54.5" y="48.0" />
+    </edge>
+    <edge source="Vehicle" target="Obstacle">
+      <point x="0.0" y="-14.5" />
+      <point x="1453.4147569444444" y="1232.0" />
+      <point x="1401.0" y="1232.0" />
+      <point x="51.75" y="103.0" />
+    </edge>
+    <edge source="Bus" target="Vehicle">
+      <point x="47.25" y="-92.0" />
+      <point x="1289.75" y="1388.0" />
+      <point x="1436.6147569444445" y="1388.0" />
+      <point x="-16.799999999999955" y="14.5" />
+    </edge>
+    <edge source="World" target="Level">
+      <point x="66.33333333333326" y="-169.0" />
+      <point x="427.3897569444444" y="1781.0" />
+      <point x="1002.0" y="1781.0" />
+      <point x="0.0" y="169.0" />
+    </edge>
+    <edge source="Log" target="Rideable">
+      <point x="0.0" y="-14.5" />
+      <point x="650.0" y="1398.0" />
+      <point x="682.1093749999999" y="1398.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="Longlog" target="Rideable">
+      <point x="0.0" y="-14.5" />
+      <point x="550.0" y="1398.0" />
+      <point x="639.509375" y="1398.0" />
+      <point x="-42.59999999999991" y="36.5" />
+    </edge>
+    <edge source="Level" target="Vehicle">
+      <point x="84.0" y="-169.0" />
+      <point x="1086.0" y="1378.0" />
+      <point x="1419.8147569444445" y="1378.0" />
+      <point x="-33.60000000000002" y="14.5" />
+    </edge>
+    <edge source="Rideable" target="Obstacle">
+      <point x="0.0" y="-36.5" />
+      <point x="682.1093749999999" y="1232.0" />
+      <point x="1297.5" y="1232.0" />
+      <point x="-51.75" y="103.0" />
+    </edge>
+    <edge source="Sprite" target="utilities.BoundingBox">
+      <point x="0.0" y="-191.0" />
+      <point x="727.4253472222221" y="407.0" />
+      <point x="676.8628472222221" y="407.0" />
+      <point x="60.25" y="191.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5709611451942745" x="1181.5639377410498" y="1756.7817641164174" />
+  <SelectedNodes>
+    <node>utilities.BoundingBox</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
