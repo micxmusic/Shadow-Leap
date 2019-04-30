@@ -1,5 +1,5 @@
 # Shadow-Leap
-A 2D clone of Leap Frog implemented in Java
+A 2D clone of Frogger implemented in Java
 
 ## Usage
 Download Slick2D [here](http://slick.ninjacave.com/).
